@@ -1,15 +1,10 @@
 import Head from 'next/head'
-// import Link from 'next/head'
-
 import { hours } from '../data'
 import React, {useState} from 'react'
+import Link from 'next/link'
 
 export default function Home() {
 
-  const [location, setLocation] = useState('Location Here');
-  const [minCust, setMinCust] = useState('Min Customers Here');
-  const [maxCust, setMaxCust] = useState('Max Customers Here');
-  const [avgCookies, setAvgCookies] = useState('Average Cookies Sold Here');
   const [noTable, setNoTable] = useState('No Cookie Stands Available');
   const [on, setOn] = useState(false)
   const [tableLocation, setTableLocation] = useState()
@@ -24,12 +19,11 @@ export default function Home() {
     const minCust = event.target.min_cust.value
     const maxCust = event.target.max_cust.value
     const avgCookies = event.target.avg_per.value
-    
-    // setLocation(savedLocation)
-    // setMinCust(event.target.min_cust.value)
-    // setMaxCust(event.target.max_cust.value)
-    // setAvgCookies(event.target.avg_per.value)
-    
+
+    // Used to calculate the hourly sales and total sales for that location
+    const minMaxAvg = [minCust, maxCust, avgCookies]
+    const salesData = calcHourlySales(minMaxAvg)
+
     setOn(true)
     setHours(hours)
     setTableLocation('Location')
@@ -39,17 +33,12 @@ export default function Home() {
 
     const newCookieData = {
       newLocation: savedLocation,
-      min: minCust,
-      max: maxCust,
-      avg: avgCookies,
+      sales: salesData,
       count: cookieData.length,
     }
-
     setCookieData([...cookieData, newCookieData])
-    console.log('set cookie data: ', newCookieData)
-    // console.log(hours)
+
   }
-  
 
   return (
     <div className="">
@@ -72,6 +61,9 @@ export default function Home() {
   function Header(props){
     return(
       <header className="flex-1 text-3xl text-left bg-green-600 p-2">
+        <Link href="/overview">
+          <a className="float-right text-base bg-gray-100 pr-1 pl-1">Overview</a>
+        </Link>
         <h1>{props.title}</h1>
       </header>
     )
@@ -114,19 +106,39 @@ export default function Home() {
               </tr>
               {props.cookieData.map(data =>(
                 <tr>
-                  {console.log("data is", data.newLocation)}
+                  {console.log("data is", data)}
                   <td className="border border-black-900">{data.newLocation}</td>
-                  <td className="border border-black-900">{data.min}</td>
-                  <td className="border border-black-900">{data.max}</td>
+                  {data.sales[0].map(each =>(
+                    <td className="border border-black-900">{each}</td>
+                  ))}
+                  <td className="border border-black-900">{data.sales[1]}</td>
                 </tr>
-              ))}
-              
-            
+              ))} 
         </tbody>
       </table>
     )
   }
 
+  // Used to calculate the hourly sales
+  function calcHourlySales(data){
+    let eachSale = []
+    let totalSale = 0
+    for (let i = 0; i < hours.length; i++){
+      console.log("data.min and max are ", data[0], data[1], data[2])
+      let hourSale = Math.ceil(randomIntGen(data[0], data[1]) * data[2])
+      eachSale.push(hourSale)
+      totalSale += hourSale
+    }
+    console.log("eachSale is", eachSale)
+    return [eachSale, totalSale]
+  }
+
+  // Helps generate a random int based off hourly sales
+  function randomIntGen(min, max){
+    return Math.floor(Math.random() * (max - min +1)) + min;
+  }
+
+  // Used to show/hide the table's location
   function TableOn(props){
     if (on) {
       return (
@@ -136,7 +148,7 @@ export default function Home() {
       return ('')
     }
   }
-
+  // Used to show/hide the table's totals
   function TotalOn(props){
     if (on) {
       return (
