@@ -54,9 +54,9 @@ export default function Form(props){
 
   // Helps generate a random int based off hourly sales
   function randomIntGen(min, max){
-    return Math.floor(Math.random() * (max - min) +1 );
+    return Math.floor(Math.random() * (max - min )+ min);
   }
-  
+
     return(
       <form onSubmit={formHandler} className="grid gap-1 bg-green-500 grid-cols-8 mb-4">
           <legend className="col-start-4 col-span-2 text-2xl m-2">Create Cookie Stand</legend>
