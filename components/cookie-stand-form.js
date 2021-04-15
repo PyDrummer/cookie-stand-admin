@@ -4,13 +4,13 @@ import { hours } from '../data'
 
 export default function Form(props){
 
-  const [noTable, setNoTable] = useState('No Cookie Stands Available');
-  const [on, setOn] = useState(false)
-  const [tableLocation, setTableLocation] = useState()
-  const [tabelTotals, setTableTotals] = useState()
-  const [allHours, setHours] = useState([])
-  const [hardcodedCookieData, setHardCoded] = useState([])
-  const [cookieData, setCookieData] = useState([]);
+  // const [noTable, setNoTable] = useState('No Cookie Stands Available');
+  // const [on, setOn] = useState(false)
+  // const [tableLocation, setTableLocation] = useState()
+  // const [tabelTotals, setTableTotals] = useState()
+  // const [allHours, setHours] = useState([])
+  // const [hardcodedCookieData, setHardCoded] = useState([])
+  // const [cookieData, setCookieData] = useState([]);
 
   function formHandler(event){
       event.preventDefault();
@@ -23,27 +23,19 @@ export default function Form(props){
       const minMaxAvg = [minCust, maxCust, avgCookies]
       const salesData = calcHourlySales(minMaxAvg)
   
-      setOn(true)
-      setHours(hours)
-      setTableLocation('Location')
-      setTableTotals('Totals')
-      setNoTable('')
-      setHardCoded(['Calexico', 48, 42, 30, 24, 42, 24, 36, 42, 42, 48, 36, 42, 24, 36, 516])
+      props.setOn(true)
+      props.setHours(hours)
+      props.setTableLocation('Location')
+      props.setTableTotals('Totals')
+      props.setNoTable('')
+      props.setHardCoded(['Calexico', 48, 42, 30, 24, 42, 24, 36, 42, 42, 48, 36, 42, 24, 36, 516])
   
       const newCookieData = {
         newLocation: savedLocation,
         sales: salesData,
-        count: cookieData.length,
+        count: props.cookieData.length,
       }
-      setCookieData([...cookieData, newCookieData])
-
-      return(
-        <div>
-          <Table allHours={ allHours } cookieData={ cookieData } hardcoded={ hardcodedCookieData } on={ on } tableLocation={ tableLocation } tabelTotals={ tabelTotals }/>
-          <h2 className="text-center mb-4">{noTable}</h2>
-        </div>
-      )
-  
+      props.setCookieData([...props.cookieData, newCookieData])  
     }
 
     // Used to calculate the hourly sales
@@ -62,8 +54,9 @@ export default function Form(props){
 
   // Helps generate a random int based off hourly sales
   function randomIntGen(min, max){
-    return Math.floor(Math.random() * (max - min +1)) + min;
+    return Math.floor(Math.random() * (max - min) +1 );
   }
+  
     return(
       <form onSubmit={formHandler} className="grid gap-1 bg-green-500 grid-cols-8 mb-4">
           <legend className="col-start-4 col-span-2 text-2xl m-2">Create Cookie Stand</legend>
