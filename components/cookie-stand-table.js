@@ -1,37 +1,55 @@
-import TableOn from './cookie-stand-tableOn'
-import TotalOn from './cookie-stand-totalOn'
+import { hours } from '../data'
 
-// import React, { useState } from 'react'
+export default function CookieStandTable({ stands, onDelete }, props) {
 
-export default function Table(props){
-    return(
-      <table className="w-1/2 mx-auto my-4">
-        <thead>
-            <tr>
-              < TableOn on={props.on} tableLocation={ props.tableLocation }/>
-              {props.allHours.map(each =>(
-                <th className="border border-black-900">{ each }</th>
-              ))}
-              < TotalOn on={props.on} tabelTotals={ props.tabelTotals }/>
-            </tr>
-        </thead>
-        <tbody>
-              <tr>
-              {props.hardcoded.map(data =>(
-                  <td className="border border-black-900">{data}</td>
-                  ))}
-              </tr>
-              {props.cookieData.map(data =>(
+    return (
+        <table>
+            <thead>
                 <tr>
-                  {console.log("data is", data)}
-                  <td className="border border-black-900">{data.newLocation}</td>
-                  {data.sales[0].map(each =>(
-                    <td className="border border-black-900">{each}</td>
-                  ))}
-                  <td className="border border-black-900">{data.sales[1]}</td>
+
+                    <th>Location</th>
+                    {hours.map(slot => (
+                        <th key={slot}>{slot}</th>
+                    ))}
+                    <th>Totals</th>
                 </tr>
-              ))} 
-        </tbody>
-      </table>
-    )
-  }
+            </thead>
+            <tbody>
+                {stands.map((stand, i) => {
+
+                    return (
+                        <tr key={stand.id}>
+
+                            <th>
+                                <div>
+
+                                    <p>{stand.location}</p>
+
+                                    <span onClick={() => onDelete(stand)}>X</span>
+                                </div>
+                            </th>
+
+                            {stand.cookiesEachHour.map((amt, i) => (
+                                <td key={i}>
+                                    {amt}
+                                </td>
+                            ))}
+                            <td>{stand.totalDailyCookies}</td>
+                        </tr>
+                    )
+                })}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Totals</th>
+                    {hours.map((_, i) => {
+                        const amt = stands.reduce((acc, cur) => acc + cur.cookiesEachHour[i], 0);
+                        return <td key={'amt' + i}>{amt}</td>
+                    })}
+                    <td>{stands.reduce((acc, cur) => acc + cur.totalDailyCookies, 0)}</td>
+                </tr>
+            </tfoot>
+        </table>
+
+    );
+}
