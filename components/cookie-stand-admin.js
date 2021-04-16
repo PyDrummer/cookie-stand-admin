@@ -5,18 +5,18 @@ import Head from 'next/head'
 
 import HeaderCookieStandHeader from './cookie-stand-header'
 import Footer from '../components/cookie-stand-footer'
-import Table from '../components/cookie-stand-table'
+import CookieStandTable from '../components/cookie-stand-table'
 import Form from '../components/cookie-stand-form'
 
 export default function CookieStandAdmin({ token, onLogout, username }) {
     //Form stuff:
-    const [noTable, setNoTable] = useState('No Cookie Stands Available');
-    const [on, setOn] = useState(false)
-    const [tableLocation, setTableLocation] = useState()
-    const [tabelTotals, setTableTotals] = useState()
-    const [allHours, setHours] = useState([])
-    const [hardcodedCookieData, setHardCoded] = useState([])
-    const [cookieData, setCookieData] = useState([]);
+    // const [noTable, setNoTable] = useState('No Cookie Stands Available');
+    // const [on, setOn] = useState(false)
+    // const [tableLocation, setTableLocation] = useState()
+    // const [tabelTotals, setTableTotals] = useState()
+    // const [allHours, setHours] = useState([])
+    // const [hardcodedCookieData, setHardCoded] = useState([])
+    // const [cookieData, setCookieData] = useState([]);
 
     //Login Stuff
     const { data, error, mutate } = useSWR([apiUrl, token], fetchWithToken);
@@ -34,12 +34,15 @@ export default function CookieStandAdmin({ token, onLogout, username }) {
 
     async function createHandler(values) {
 
+        console.log("values are", values)
         const newStand = CookieStand.fromValues(values);
 
         newStand.location += '...'; // Add the ... to show loading state
 
         const updatedStands = [newStand, ...cookieStands]
-
+        
+        // console.log('cookieStands are: ', newStand)
+        console.log('cookieStands are: ', cookieStands)
         mutate(updatedStands, false);
 
         await postWithToken(token, values);
@@ -49,7 +52,8 @@ export default function CookieStandAdmin({ token, onLogout, username }) {
     }
 
     async function deleteHandler(stand) {
-
+        console.log('DeleteHandler is', stand)
+        console.log('current cookieStands ', cookieStands)
         const updatedStands = cookieStands.filter(storedStand => storedStand.id !== stand.id);
 
         mutate(updatedStands, false);
@@ -74,11 +78,11 @@ export default function CookieStandAdmin({ token, onLogout, username }) {
             <HeaderCookieStandHeader username={ username } onLogout={ onLogout }/>
 
             <main className="m-8">
-                <Form noTable={noTable} setOn={ setOn } setNoTable={ setNoTable } setTableLocation={ setTableLocation } setTableTotals={ setTableTotals } setHardCoded={ setHardCoded } setCookieData={ setCookieData } cookieData={ cookieData } setHours={ setHours }/>
-                <Table allHours={ allHours } cookieData={ cookieData } hardcoded={ hardcodedCookieData } on={ on } tableLocation={ tableLocation } tabelTotals={ tabelTotals }/>
-                <h2 className="text-center mb-4">{ noTable }</h2>
+                <Form onCreate={ createHandler } />
+                <CookieStandTable onDelete={ deleteHandler } stands ={ cookieStands } />
+                {/* <h2 className="text-center mb-4">{ noTable }</h2> */}
             </main>
-  < Footer cookieData={cookieData}/>
+  < Footer cookieData={cookieStands}/>
         </div>
     )
 }
