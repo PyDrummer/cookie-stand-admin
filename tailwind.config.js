@@ -2,7 +2,12 @@ module.exports = {
   purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      margin:{
+        space: '500px',
+        input: '300px',
+      }
+    },
   },
   variants: {
     extend: {},

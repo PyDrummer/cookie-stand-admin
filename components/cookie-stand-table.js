@@ -3,29 +3,30 @@ import { hours } from '../data'
 export default function CookieStandTable({ stands, onDelete }, props) {
 
     return (
-        <table>
+        <table className="w-1/2 mx-auto my-10">
             <thead>
-                <tr>
+                <tr >
 
-                    <th>Location</th>
+                    <th className="border">Location</th>
                     {hours.map(slot => (
-                        <th key={slot}>{slot}</th>
+                        <th className="border" key={slot}>{slot}</th>
                     ))}
-                    <th>Totals</th>
+                    <th className="border">Totals</th>
                 </tr>
             </thead>
             <tbody>
                 {stands.map((stand, i) => {
 
                     return (
-                        <tr key={stand.id}>
+                        <tr className="border" key={stand.id}>
 
                             <th>
                                 <div>
 
-                                    <p>{stand.location}</p>
-
-                                    <span onClick={() => onDelete(stand)}>X</span>
+                                    <p>{stand.location}
+                                    <span onClick={() => onDelete(stand)}> X</span>
+                                    <i class="fa fa-trash-o" style="font-size:24px"></i>
+                                    </p>
                                 </div>
                             </th>
 

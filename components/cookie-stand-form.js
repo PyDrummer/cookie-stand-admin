@@ -32,17 +32,42 @@ export default function Form(props){
 
     // Used to calculate the hourly sales
   return(
-      <form onSubmit={formHandler} className="grid gap-1 bg-green-500 grid-cols-8 mb-4">
-          <legend className="col-start-4 col-span-2 text-2xl m-2">Create Cookie Stand</legend>
-          <label className="row-start-2 col-start-1 col-span-1 ml-8" for='location'>Location</label>
-          <input type="text" name="location" id="location" value={values.location} onChange={inputChangeHandler} placeholder="Cookie Stand Location" className="row-start-2 col-start-2 col-span-7 text-sm mr-4" ></input>
-          <label className="row-start-3 col-start-1 col-span-2 text-sm text-center" for='min_cust'>Minimum Customers Per Hour</label>
-          <input type="number" name="min" id="min" value={values.min} onChange={inputChangeHandler} className="row-start-4 col-start-1 col-span-2 text-sm mr-4 ml-4 mb-4"></input>
-          <label className="row-start-3 col-start-3 col-span-2 text-sm text-center" for='max_cust'>Maximum Customers Per Hour</label>
-          <input type="number" name="max" id="max" value={values.max} onChange={inputChangeHandler} className="row-start-4 col-start-3 col-span-2 text-sm mr-4 ml-4 mb-4"></input>
-          <label className="row-start-3 col-start-5 col-span-2 text-sm text-center" for='avg_per'>Average Cookies Per Sale</label>
-          <input type="number" name="avg" id="avg" value={values.avg} onChange={inputChangeHandler} className="row-start-4 col-start-5 col-span-2 text-sm mr-4 ml-4 mb-4"></input>
-          <button className="row-start-3 col-start-7 col-span-2 row-span-2 bg-green-700 mr-4 ml-2 mb-2 mt-2" >Create</button>
+      // <form onSubmit={formHandler} className="grid gap-1 bg-green-500 grid-cols-8 mb-4">
+      //     <legend className="col-start-4 col-span-2 text-2xl m-2">Create Cookie Stand</legend>
+      //     <label className="row-start-2 col-start-1 col-span-1 text-center" for='location'>Location</label>
+      //     <input type="text" name="location" id="location" value={values.location} onChange={inputChangeHandler} placeholder="Cookie Stand Location" className="row-start-2 col-start-2 col-span-4 text-sm " ></input>
+      //     <br className="row-start-3 col-start-1 col-span-2 text-sm text-center"></br>
+      //     <label className="row-start-4 col-start-1 col-span-2 text-sm text-center" for='min_cust'>Minimum Customers Per Hour</label>
+      //     <input type="number" name="min" id="min" value={values.min} onChange={inputChangeHandler} className="row-start-5 col-start-1 col-span-2 text-sm mr-4 ml-4 mb-4"></input>
+      //     <label className="row-start-4 col-start-3 col-span-2 text-sm text-center" for='max_cust'>Maximum Customers Per Hour</label>
+      //     <input type="number" name="max" id="max" value={values.max} onChange={inputChangeHandler} className="row-start-5 col-start-3 col-span-2 text-sm mr-4 ml-4 mb-4"></input>
+      //     <label className="row-start-4 col-start-5 col-span-2 text-sm text-center" for='avg_per'>Average Cookies Per Sale</label>
+      //     <input type="number" name="avg" id="avg" value={values.avg} onChange={inputChangeHandler} className="row-start-5 col-start-5 col-span-2 text-sm mr-4 ml-4 mb-4"></input>
+      //     <button className="row-start-2 col-start-7 col-span-2 row-span-2 bg-green-700" >Create</button>
+      //    {/* <button className="row-start-2 col-start-7 col-span-2 row-span-2 bg-green-700 mr-4 ml-2 mb-2 mt-2" >Create</button> */}
+
+      // </form>
+
+      <form onSubmit={formHandler} className="border w-10/12 mx-auto text-center bg-green-600 pb-10">
+          {/* <legend className="text-2xl m-2">Create Cookie Stand</legend> */}
+          <button className="py-4 px-40 mt-5 ml-20 bg-green-700" >CREATE STAND</button>
+          <div className="float-left mt-5 ml-10">
+            <label className="font-bold mt-5 ml-20" for='location'>ADD LOCATION</label>
+            <br></br>
+            <input className=" ml-10 text-sm" size="175" type="text" name="location" id="location" value={values.location} onChange={inputChangeHandler} placeholder="Cookie Stand Location"  ></input>
+          </div>
+
+          <div className="mt-5 ml-20">
+            <label className="ml-20 mr-space float-left font-bold text-sm text-center" for='min_cust'>Minimum Customers Per Hour</label>
+            <label className="mr-space float-left font-bold text-sm text-center" for='max_cust'>Maximum Customers Per Hour</label>
+            <label className=" float-left font-bold text-sm text-center" for='avg_per'>Average Cookies Per Sale</label>
+            <br></br>
+            <input className="mr-input pr-60 float-left text-left text-sm" type="number" name="min" id="min" value={values.min} onChange={inputChangeHandler} ></input>
+            <input className="mr-input pr-60 float-left text-sm " type="number" type="number" name="max" id="max" value={values.max} onChange={inputChangeHandler} ></input>
+            <input className="float-left pr-60 text-sm mb-10" type="number" name="avg" id="avg" value={values.avg} onChange={inputChangeHandler} ></input>
+          </div>
+         {/* <button className="row-start-2 col-start-7 col-span-2 row-span-2 bg-green-700 mr-4 ml-2 mb-2 mt-2" >Create</button> */}
+
       </form>
     )
  }
