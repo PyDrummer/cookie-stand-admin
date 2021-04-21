@@ -6,6 +6,7 @@ import { getToken } from '../services/data-fetcher'
 // Form imports
 import LoginForm from '../components/loginform'
 import CookieStandAdmin from '../components/cookie-stand-admin'
+import "@fortawesome/fontawesome-svg-core/styles.css";
 
 export default function Home() {
   // Login stuff:

@@ -8,6 +8,7 @@ import Footer from '../components/cookie-stand-footer'
 import CookieStandTable from '../components/cookie-stand-table'
 import Form from '../components/cookie-stand-form'
 
+
 export default function CookieStandAdmin({ token, onLogout, username }) {
 
     //Login Stuff

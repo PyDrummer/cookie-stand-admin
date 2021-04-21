@@ -1,53 +1,59 @@
 import { hours } from '../data'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import "@fortawesome/fontawesome-svg-core/styles.css";
+
+const element = <FontAwesomeIcon icon={faTrashAlt} size="1x" />
+const element2 = <FontAwesomeIcon icon="fa-trash-alt" />
+
 export default function CookieStandTable({ stands, onDelete }, props) {
 
     return (
         <table className="w-1/2 mx-auto my-10">
-            <thead>
+            <thead className="bg-green-600">
                 <tr >
 
-                    <th className="border">Location</th>
+                    <th className="border border-black">Location</th>
                     {hours.map(slot => (
-                        <th className="border" key={slot}>{slot}</th>
+                        <th className="border border-black" key={slot}>{slot}</th>
                     ))}
-                    <th className="border">Totals</th>
+                    <th className="border border-black">Totals</th>
                 </tr>
             </thead>
             <tbody>
                 {stands.map((stand, i) => {
 
                     return (
-                        <tr className="border" key={stand.id}>
+                        <tr key={stand.id} className="bg-green-400">
 
-                            <th>
+                            <th className="border border-black">
                                 <div>
 
-                                    <p>{stand.location}
-                                    <span onClick={() => onDelete(stand)}> X</span>
-                                    <i class="fa fa-trash-o" style="font-size:24px"></i>
+                                    <p className="">{stand.location}
+                                    <span onClick={() => onDelete(stand)}> {element}</span>
                                     </p>
                                 </div>
                             </th>
 
                             {stand.cookiesEachHour.map((amt, i) => (
-                                <td key={i}>
+                                <td className="border border-black" key={i}>
                                     {amt}
                                 </td>
                             ))}
-                            <td>{stand.totalDailyCookies}</td>
+                            <td className="border border-black" >{stand.totalDailyCookies}</td>
                         </tr>
                     )
                 })}
             </tbody>
             <tfoot>
-                <tr>
-                    <th>Totals</th>
+                <tr className="bg-green-600">
+                    <th className="border border-black" >Totals</th>
                     {hours.map((_, i) => {
                         const amt = stands.reduce((acc, cur) => acc + cur.cookiesEachHour[i], 0);
-                        return <td key={'amt' + i}>{amt}</td>
+                        return <td className="border border-black" key={'amt' + i}>{amt}</td>
                     })}
-                    <td>{stands.reduce((acc, cur) => acc + cur.totalDailyCookies, 0)}</td>
+                    <td className="border border-black">{stands.reduce((acc, cur) => acc + cur.totalDailyCookies, 0)}</td>
                 </tr>
             </tfoot>
         </table>
