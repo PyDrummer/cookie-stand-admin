@@ -8,15 +8,8 @@ import Footer from '../components/cookie-stand-footer'
 import CookieStandTable from '../components/cookie-stand-table'
 import Form from '../components/cookie-stand-form'
 
+
 export default function CookieStandAdmin({ token, onLogout, username }) {
-    //Form stuff:
-    // const [noTable, setNoTable] = useState('No Cookie Stands Available');
-    // const [on, setOn] = useState(false)
-    // const [tableLocation, setTableLocation] = useState()
-    // const [tabelTotals, setTableTotals] = useState()
-    // const [allHours, setHours] = useState([])
-    // const [hardcodedCookieData, setHardCoded] = useState([])
-    // const [cookieData, setCookieData] = useState([]);
 
     //Login Stuff
     const { data, error, mutate } = useSWR([apiUrl, token], fetchWithToken);
@@ -34,7 +27,7 @@ export default function CookieStandAdmin({ token, onLogout, username }) {
 
     async function createHandler(values) {
 
-        console.log("values are", values)
+        // console.log("values are", values)
         const newStand = CookieStand.fromValues(values);
 
         newStand.location += '...'; // Add the ... to show loading state
@@ -73,6 +66,7 @@ export default function CookieStandAdmin({ token, onLogout, username }) {
             <Head>
                 <title>Cookie Stand Admin</title>
                 <link rel="icon" href="/favicon.ico" />
+                {/* <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link> */}
             </Head>
 
             <HeaderCookieStandHeader username={ username } onLogout={ onLogout }/>
@@ -80,7 +74,6 @@ export default function CookieStandAdmin({ token, onLogout, username }) {
             <main className="m-8">
                 <Form onCreate={ createHandler } />
                 <CookieStandTable onDelete={ deleteHandler } stands ={ cookieStands } />
-                {/* <h2 className="text-center mb-4">{ noTable }</h2> */}
             </main>
   < Footer cookieData={cookieStands}/>
         </div>

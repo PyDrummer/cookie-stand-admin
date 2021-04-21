@@ -1,52 +1,59 @@
 import { hours } from '../data'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import "@fortawesome/fontawesome-svg-core/styles.css";
+
+const element = <FontAwesomeIcon icon={faTrashAlt} size="1x" />
+const element2 = <FontAwesomeIcon icon="fa-trash-alt" />
+
 export default function CookieStandTable({ stands, onDelete }, props) {
 
     return (
-        <table>
-            <thead>
-                <tr>
+        <table className="w-1/2 mx-auto my-10">
+            <thead className="bg-green-600">
+                <tr >
 
-                    <th>Location</th>
+                    <th className="border border-black">Location</th>
                     {hours.map(slot => (
-                        <th key={slot}>{slot}</th>
+                        <th className="border border-black" key={slot}>{slot}</th>
                     ))}
-                    <th>Totals</th>
+                    <th className="border border-black">Totals</th>
                 </tr>
             </thead>
             <tbody>
                 {stands.map((stand, i) => {
 
                     return (
-                        <tr key={stand.id}>
+                        <tr key={stand.id} className="bg-green-400">
 
-                            <th>
+                            <th className="border border-black">
                                 <div>
 
-                                    <p>{stand.location}</p>
-
-                                    <span onClick={() => onDelete(stand)}>X</span>
+                                    <p className="">{stand.location}
+                                    <span onClick={() => onDelete(stand)}> {element}</span>
+                                    </p>
                                 </div>
                             </th>
 
                             {stand.cookiesEachHour.map((amt, i) => (
-                                <td key={i}>
+                                <td className="border border-black" key={i}>
                                     {amt}
                                 </td>
                             ))}
-                            <td>{stand.totalDailyCookies}</td>
+                            <td className="border border-black" >{stand.totalDailyCookies}</td>
                         </tr>
                     )
                 })}
             </tbody>
             <tfoot>
-                <tr>
-                    <th>Totals</th>
+                <tr className="bg-green-600">
+                    <th className="border border-black" >Totals</th>
                     {hours.map((_, i) => {
                         const amt = stands.reduce((acc, cur) => acc + cur.cookiesEachHour[i], 0);
-                        return <td key={'amt' + i}>{amt}</td>
+                        return <td className="border border-black" key={'amt' + i}>{amt}</td>
                     })}
-                    <td>{stands.reduce((acc, cur) => acc + cur.totalDailyCookies, 0)}</td>
+                    <td className="border border-black">{stands.reduce((acc, cur) => acc + cur.totalDailyCookies, 0)}</td>
                 </tr>
             </tfoot>
         </table>
