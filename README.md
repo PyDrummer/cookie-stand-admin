@@ -1,23 +1,28 @@
-# Next.js + Tailwind CSS Example
+# Cookie-Stand-Admin!
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) (v2) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+https://cookie-stand-admin-six.vercel.app/
 
-It uses the new [`@tailwindcss/jit`](https://github.com/tailwindlabs/tailwindcss-jit) engine for Tailwind CSS.
+Click the link above to see the live deployed website!
 
-## Deploy your own
+## What is this?
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+This is a next.js app, hooked up to a Django REST framework API.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
+## What does it do?
 
-## How to use
+You can enter a location name, minimum customers, maximum customers and average customers per day to the form and see sales numbers generated on a table.
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+It's backed up with an API to store this information, but utilizes CRUD so you can delete a previously entered location.
 
-```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
-# or
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
-```
+## How do I get this on my machine?
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+Feel free to fork or clone this repo.
+
+From there copy and in your terminal:
+```git clone 'url here'```
+
+Now use your favorite code editor to make any changes or run the progam on your local host with:
+```npm run dev```
+
+Current version: 1.0
+
