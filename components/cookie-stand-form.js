@@ -50,22 +50,22 @@ export default function Form(props){
 
       <form onSubmit={formHandler} className="border border-green-500 border-2 rounded-md w-10/12 mx-auto text-center bg-green-300 pb-10">
           {/* <legend className="text-2xl m-2">Create Cookie Stand</legend> */}
-          <button className="bg-green-700 py-4 px-40 mt-5 lg:ml-create py-3 px-36" >CREATE STAND</button>
+          <button className="bg-green-700 2xl:py-4 px-40 mt-5 2xl:ml-10 lg:bg-green-500 ml-96 py-3 px-36 " >CREATE STAND</button>
           <div className="float-left mt-5 ml-10">
             <label className="font-bold mt-5 ml-20" for='location'>ADD LOCATION</label>
             <br></br>
-            <input className=" ml-10 pr-96 text-sm pr-location lg:pr-lspace" type="text" name="location" id="location" value={values.location} onChange={inputChangeHandler} placeholder="Cookie Stand Location"  ></input>
+            <input className=" ml-10 text-sm lg:pr-96 2xl:pr-location " type="text" name="location" id="location" value={values.location} onChange={inputChangeHandler} placeholder="Cookie Stand Location"  ></input>
           </div>
 
           <div className="mt-5 ml-20">
-            <label className="float-left font-bold text-sm text-center ml-20 mr-space lg:mr-lspace" for='min_cust'>Minimum Customers Per Hour</label>
-            <label className="mr-space float-left font-bold text-sm text-center lg:mr-lspace" for='max_cust'>Maximum Customers Per Hour</label>
+            <label className="float-left font-bold text-sm text-center ml-20 2xl:mr-space lg:mr-lspace" for='min_cust'>Minimum Customers Per Hour</label>
+            <label className="float-left font-bold text-sm text-center 2xl:mr-space lg:mr-lspace" for='max_cust'>Maximum Customers Per Hour</label>
             <label className=" float-left font-bold text-sm text-center " for='avg_per'>Average Cookies Per Sale</label>
           </div>
             <br></br>
           <div className="mt-5 ml-20">
-            <input className="mr-input float-left text-left text-sm pr-60 lg:mr-input2" type="number" name="min" id="min" value={values.min} onChange={inputChangeHandler} ></input>
-            <input className="mr-input float-left text-sm pr-60 lg:mr-input2" type="number" type="number" name="max" id="max" value={values.max} onChange={inputChangeHandler} ></input>
+            <input className=" float-left text-left text-sm pr-60 2xl:mr-input lg:mr-input2" type="number" name="min" id="min" value={values.min} onChange={inputChangeHandler} ></input>
+            <input className=" float-left text-sm pr-60 2xl:mr-input lg:mr-input2" type="number" type="number" name="max" id="max" value={values.max} onChange={inputChangeHandler} ></input>
             <input className="float-left text-sm mb-10 pr-60 " type="number" name="avg" id="avg" value={values.avg} onChange={inputChangeHandler} ></input>
           </div>
          {/* <button className="row-start-2 col-start-7 col-span-2 row-span-2 bg-green-700 mr-4 ml-2 mb-2 mt-2" >Create</button> */}
