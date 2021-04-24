@@ -2,21 +2,34 @@ module.exports = {
   purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    screens: {
+      'sm': '640px',
+      // => @media (min-width: 640px) { ... }
+
+      'md': '768px',
+      // => @media (min-width: 768px) { ... }
+
+      'lg': '1024px',
+      // => @media (min-width: 1024px) { ... }
+
+      'xl': '1280px',
+      // => @media (min-width: 1280px) { ... }
+
+      '2xl': '1536px',
+      // => @media (min-width: 1536px) { ... }
+    },
     extend: {
       margin:{
         space: '500px',
         input: '300px',
-        input2: '200px',
-        input3: '250px'
+        input2: '100px',
+        input3: '250px',
+        lspace: '300px',
+        create: '350px'
       },
       padding: {
-        'location': '1050px',
+        'l_space': '100px',
         '1080': '400px',
-      },
-      screens: {
-        'break1': '2290px',
-        'xl': '2560px',
-        '1080p': {'max': '1920px'} ,
       },
     },
   },
